@@ -43,7 +43,7 @@ for submission in subreddit.hot(limit=10):
             # Reply to the post
             randomnumber = randint(0, len(locations))
             submission.reply(f"Did you know that: {locations[randomnumber]}")
-            print("Bot replying to : ", submission.title)
+            print(f"Bot replying to: {submission.title} https://www.reddit.com/r/fakehistoryporn/comments/{submission.id}")
 
             # Store the current id into our list
             posts_replied_to.append(submission.id)
