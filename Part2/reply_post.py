@@ -1,7 +1,6 @@
 from random import randint
 
 import praw
-import pdb
 import re
 import os
 
