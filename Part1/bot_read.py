@@ -3,7 +3,7 @@ import praw
 
 reddit = praw.Reddit('bot1')
 
-subreddit = reddit.subreddit("learnpython")
+subreddit = reddit.subreddit("fakehistoryporn")
 
 for submission in subreddit.hot(limit=5):
     print("Title: ", submission.title)
