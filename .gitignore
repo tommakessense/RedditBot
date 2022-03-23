@@ -56,3 +56,4 @@ target/
 config_bot.py
 posts_replied_to.txt
 /.idea/
+/Part2/posts_analytics.json
