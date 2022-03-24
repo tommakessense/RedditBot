@@ -4,6 +4,7 @@ import stanza
 import praw
 import re
 import os
+from urllib.parse import quote
 
 from stanza import Pipeline
 
@@ -62,9 +63,16 @@ def fetch_reddit_posts(selected_subreddit: str, limit: int) -> list:
 def process_post(post, nlp_pipe: Pipeline):
     doc = nlp_pipe(post.title)
     keywords = get_keywords_from_post(doc.sentences)
-    print(keywords)
-    print(doc.entities)
-    return post.id, post.title, keywords
+    # write all keywords in lower case
+    keywords = [keyword.lower() for keyword in keywords]
+    # remove all duplicates and keep original order
+    unique_keywords = list(dict.fromkeys(keywords))
+    print(" ".join(unique_keywords))
+    print(f"{post.title}")
+    print(f"https://www.reddit.com/r/fakehistoryporn/comments/{post.id}")
+    URL_keywords = quote(' '.join(unique_keywords))
+    print(f"https://en.wikipedia.org/w/index.php?search={URL_keywords}")
+    return post.id, post.title, unique_keywords
 
 def filter_analytics(posts, posts_analytics):
     post_ids = [post_id for post_id, _, _ in posts_analytics]
